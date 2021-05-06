@@ -1,0 +1,12 @@
+vendor/
+cmd/_in
+cmd/conv/in/*
+cmd/conv/out/*
+cmd/parser/in/*
+cmd/parser/out/*
+cmd/parser/p
+cmd/parser/key.txt
+cmd/conv/key.txt
+*.exe
+*.prof
+*.csv

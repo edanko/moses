@@ -1,0 +1,62 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "parser",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/parser/main.go",
+            "env": {},
+            "args": ["--dont-rename"]
+        },
+        {
+            "name": "conv 10510csv",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/conv/main.go",
+            "env": {},
+            "args": ["10510"]
+        },
+        {
+            "name": "conv 10510gen",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/conv/main.go",
+            "env": {},
+            "args": ["10510gen"]
+        },
+        {
+            "name": "conv 10510 custom csv",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/conv/main.go",
+            "env": {},
+            "args": ["10510_c", "06006.csv"]
+        },
+        {
+            "name": "conv 10022",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/conv/main.go",
+            "env": {},
+            "args": ["10022"]
+        },
+        {
+            "name": "conv 22430",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/conv/main.go",
+            "env": {},
+            "args": ["22430"]
+        }
+    ]
+}

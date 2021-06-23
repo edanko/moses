@@ -97,9 +97,9 @@ func (a byProfType) Add(p *Part) {
 		a[d][p.Quality] = avltree.NewWithStringComparator()
 	}
 
-	a[d][p.Quality].Put(p.Section+"-"+p.PosNo, p)
+	a[d][p.Quality].Put(p.Project+p.Section+p.PosNo, p)
 }
 
 func (a byProfType) Remove(p *Part) {
-	a[p.Dim][p.Quality].Remove(p.Section + "-" + p.PosNo)
+	a[p.Dim][p.Quality].Remove(p.Project + p.Section + p.PosNo)
 }

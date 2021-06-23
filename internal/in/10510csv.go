@@ -12,17 +12,14 @@ import (
 	"github.com/edanko/moses/internal/models"
 )
 
-const (
-	prj = "056001"
-)
-
 var (
 	reProfType = regexp.MustCompile(`(?m)PP\/(\d+)x(\d+\.?\d?)`)
 	reQuality  = regexp.MustCompile(`(?m)Qual :\s+(\w+)`)
 )
 
-func ProcessAvevaCsv(csvFile string) []*models.Part {
-	var allProfiles []*models.Part
+func ProcessAvevaCsv(csvFile string) map[string]*models.Part {
+
+	profs := make(map[string]*models.Part)
 
 	dim, qual := dimAndQuality(csvFile)
 
@@ -82,6 +79,13 @@ func ProcessAvevaCsv(csvFile string) []*models.Part {
 		p.Dim = dim
 		p.Quality = qual
 		p.Project = prj
+
+		if p, exists := profs[p.Project+p.Section+p.PosNo]; exists {
+			p.Quantity++
+			continue
+		}
+
+		p.Quantity = 1
 
 		lEnd := strings.Builder{}
 		lEnd.Grow(100)
@@ -210,9 +214,9 @@ func ProcessAvevaCsv(csvFile string) []*models.Part {
 
 		p.SetFullLength()
 
-		allProfiles = append(allProfiles, p)
+		profs[p.Project+p.Section+p.PosNo] = p
 	}
-	return allProfiles
+	return profs
 }
 
 func dimAndQuality(fname string) (string, string) {

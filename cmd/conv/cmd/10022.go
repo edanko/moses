@@ -112,7 +112,6 @@ func main10022() {
 				panic(err)
 			}
 			fmt.Println("[+]", n.TxtFileNameString(), "txt successfully created")
-
 		}
 	}
 

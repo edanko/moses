@@ -16,12 +16,6 @@ import (
 )
 
 func main() {
-
-	// license check
-	//if ok, err := license.IsLicensed(); !ok {
-	//	log.Fatalln(err.Error())
-	//}
-
 	// load config
 	if err := config.Init(); err != nil {
 		log.Fatalln(err.Error())
@@ -56,7 +50,6 @@ func main() {
 	}
 
 	// TODO: add nester
-
 	for _, file := range files {
 		fmt.Printf(" * processing %s...\n", strings.Split(file, string(os.PathSeparator))[1])
 

@@ -140,7 +140,7 @@ func (n *Nest) remove(parts []*models.Part) {
 	for _, partToDel := range parts {
 		i := 0
 		for _, part := range n.Parts {
-			if partToDel.PosNo == part.PosNo {
+			if partToDel.Project == part.Project && partToDel.Section == part.Section && partToDel.PosNo == part.PosNo {
 				n.Parts[i] = n.Parts[len(n.Parts)-1]
 				n.Parts[len(n.Parts)-1] = &models.Part{}
 				n.Parts = n.Parts[:len(n.Parts)-1]

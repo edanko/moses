@@ -62,8 +62,22 @@ func (b *Bar) Dim() string {
 	return b.Parts[0].Dim
 }
 
-func (b *Bar) LengthString() string {
+func (b *Bar) UsedLengthString() string {
 	return strconv.FormatFloat(b.Length, 'f', -1, 64)
+}
+
+func (b *Bar) PartsLength() float64 {
+	var res float64
+
+	for _, p := range b.Parts {
+		res += p.Length
+	}
+
+	return res
+}
+
+func (b *Bar) PartsLengthString() string {
+	return strconv.FormatFloat(b.PartsLength(), 'f', -1, 64)
 }
 
 func (b *Bar) CapacityString() string {
@@ -71,11 +85,14 @@ func (b *Bar) CapacityString() string {
 }
 
 func (b *Bar) RemnantLength() float64 {
-	return b.Capacity - b.Length
+	if b.HasUsefulRemnant() {
+		return b.Capacity - b.Length
+	}
+	return 0
 }
 
 func (b *Bar) RemnantLengthString() string {
-	return strconv.FormatFloat(b.Capacity-b.Length, 'f', -1, 64)
+	return strconv.FormatFloat(b.RemnantLength(), 'f', -1, 64)
 }
 
 func (b *Bar) Project() string {
@@ -88,6 +105,24 @@ func (b *Bar) Section() string {
 
 func (b *Bar) Quality() string {
 	return b.Parts[0].Quality
+}
+
+func (b *Bar) Scrap() float64 {
+	var res float64
+
+	for _, p := range b.Parts {
+		res += p.FullLength - p.Length
+	}
+
+	if !b.HasUsefulRemnant() {
+		res += b.Capacity - b.Length
+	}
+
+	return res
+}
+
+func (b *Bar) HasUsefulRemnant() bool {
+	return b.Capacity-b.Length > viper.GetFloat64("mincut")
 }
 
 func (b *Bar) PutPart(p *Part) {
@@ -118,18 +153,21 @@ func (b *Bar) String() string {
 	o.WriteString(b.CapacityString())
 	o.WriteString(" / ")
 	o.WriteString("Исп.: ")
-	o.WriteString(b.LengthString())
+	o.WriteString(b.PartsLengthString())
 
-	if b.RemnantLength() > 0 {
+	o.WriteString(fmt.Sprintf(" (%.2f %%)", b.PartsLength()/(b.Capacity-b.RemnantLength())*100))
+
+	if b.HasUsefulRemnant() {
 		o.WriteString(" / Отход: ")
 		o.WriteString(b.RemnantLengthString())
 	}
 
-	o.WriteString(fmt.Sprintf(" (%.2f %%)", float64(b.Length)/float64(b.Capacity)*100))
+	o.WriteString(" / Лом: ")
+	o.WriteString(fmt.Sprintf("%g", b.Scrap()))
 
 	o.WriteString("\r\n")
 
-	if b.Capacity-b.Length > viper.GetFloat64("mincut") {
+	if b.HasUsefulRemnant() {
 		o.WriteString("Маркировать отход  ")
 		o.WriteString(b.NestName())
 		o.WriteString("-L")
@@ -137,24 +175,13 @@ func (b *Bar) String() string {
 		o.WriteString("\r\n")
 	}
 
-	if viper.GetBool("withsection") {
-		o.WriteString("------------------------\r\n| section|  id  |length|\r\n------------------------\r\n")
-	} else {
-		o.WriteString("---------------\r\n|  id  |length|\r\n---------------\r\n")
-	}
+	o.WriteString("----------------------------\r\n| Секция | Позиция | Длина |\r\n----------------------------\r\n")
 
 	for _, p := range b.Parts {
-		if viper.GetBool("withsection") {
-			o.WriteString(fmt.Sprintf("|%8s|%6s|%6s|\r\n", p.Section, p.PosNo, p.LengthString()))
-		} else {
-			o.WriteString(fmt.Sprintf("|%6s|%6s|\r\n", p.PosNo, p.LengthString()))
-		}
+		o.WriteString(fmt.Sprintf("| %6s | %7s | %5s |\r\n", p.Section, p.PosNo, p.LengthString()))
 	}
-	if viper.GetBool("withsection") {
-		o.WriteString("------------------------\r\n")
-	} else {
-		o.WriteString("---------------\r\n")
-	}
+	o.WriteString("----------------------------\r\n")
+
 	o.WriteString("\r\n")
 
 	return o.String()

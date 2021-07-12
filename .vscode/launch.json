@@ -5,13 +5,69 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "report",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/report/main.go",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "nest",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/nest/main.go",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "server",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/server/main.go",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "export",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/export/main.go",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "import old remnants",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/import old remnants/main.go",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "importer",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/importer/main.go",
+            "env": {},
+            "args": []
+        },
+        {
             "name": "parser",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/parser/main.go",
             "env": {},
-            "args": ["--dont-rename"]
+            "args": [
+                "--dont-rename"
+            ]
         },
         {
             "name": "conv 10510csv",
@@ -20,7 +76,9 @@
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/conv/main.go",
             "env": {},
-            "args": ["10510"]
+            "args": [
+                "10510"
+            ]
         },
         {
             "name": "conv 10510gen",
@@ -29,7 +87,9 @@
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/conv/main.go",
             "env": {},
-            "args": ["10510gen"]
+            "args": [
+                "10510gen"
+            ]
         },
         {
             "name": "conv 10510 custom csv",
@@ -38,7 +98,10 @@
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/conv/main.go",
             "env": {},
-            "args": ["10510_c", "06006.csv"]
+            "args": [
+                "10510_c",
+                "06006.csv"
+            ]
         },
         {
             "name": "conv 10022",
@@ -47,7 +110,9 @@
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/conv/main.go",
             "env": {},
-            "args": ["10022"]
+            "args": [
+                "10022"
+            ]
         },
         {
             "name": "conv 22430",
@@ -56,7 +121,9 @@
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/conv/main.go",
             "env": {},
-            "args": ["22430"]
+            "args": [
+                "22430"
+            ]
         }
     ]
 }

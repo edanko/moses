@@ -71,35 +71,52 @@ func main10510gen() {
 
 	var allBars []*models.Bar
 
-	for i, f := range files {
+	allProfiles := make(map[string]map[string][]*models.Part)
 
-		fmt.Println("[i] reading", filepath.Base(f))
-		n := nester.New()
-		parts := in.ProcessGen(f)
+	for _, file := range files {
+		fmt.Println("[i] reading", filepath.Base(file))
+		parts := in.ProcessGen(file)
 
-		if i == 0 {
-			nm = parts[0].Section
+		dim := parts[0].Dim
+		quality := parts[0].Quality
+
+		if _, exist := allProfiles[dim][quality]; !exist {
+			allProfiles[dim] = make(map[string][]*models.Part)
 		}
-		n.Parts = parts
-		n.Nest()
-		resultBarList.WriteString(n.BarListString())
-		resultNestingList.WriteString(n.NestingListString())
 
-		allBars = append(allBars, n.Bars...)
-
-		//filename := path.Join("out", n.Bars[0].Parts[0].Section, n.TxtFileNameString()+".txt")
-		filename := path.Join("out", time.Now().Format("06.01.02")+" "+n.Bars[0].Section(), n.TxtFileNameString()+".txt")
-
-		err := utils.WriteStringToFile(filename, n.TxtOutputString())
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println("[+]", n.TxtFileNameString()+".txt", "successfully created")
+		allProfiles[dim][quality] = append(allProfiles[dim][quality], parts...)
 	}
 
-	//spew.Dump(allBars)
+	var i int
 
-	//sort.Sort(models.ByPos(allBars))
+	for _, v := range allProfiles {
+		for _, profParts := range v {
+
+			if i == 0 {
+				nm = profParts[0].Section
+			}
+
+			n := nester.New()
+			n.Parts = profParts
+			n.Nest()
+
+			resultBarList.WriteString(n.BarListString())
+			resultNestingList.WriteString(n.NestingListString())
+
+			allBars = append(allBars, n.Bars...)
+
+			//filename := path.Join("out", n.Bars[0].Parts[0].Section, n.TxtFileNameString()+".txt")
+			filename := path.Join("out", time.Now().Format("06.01.02")+" "+n.Bars[0].Section(), n.TxtFileNameString()+".txt")
+
+			err := utils.WriteStringToFile(filename, n.TxtOutputString())
+			if err != nil {
+				panic(err)
+			}
+			fmt.Println("[+]", n.TxtFileNameString()+".txt", "successfully created")
+
+			i++
+		}
+	}
 
 	barlist := "Ведомость расхода материала"
 	partlist := "Партлист"

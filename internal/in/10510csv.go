@@ -134,13 +134,23 @@ func ProcessAvevaCsv(csvFile string) map[string]*models.Part {
 		}
 		// V1
 		if l[12] != "" {
+			v1, err := strconv.ParseFloat(l[12], 64)
+			if err != nil {
+				panic(err)
+			}
+
 			lEnd.WriteString(" v1=")
-			lEnd.WriteString(l[12])
+			lEnd.WriteString(strconv.FormatFloat(v1-90, 'f', -1, 64))
 		}
 		// V2
 		if l[13] != "" {
+			v2, err := strconv.ParseFloat(l[13], 64)
+			if err != nil {
+				panic(err)
+			}
+
 			lEnd.WriteString(" v2=")
-			lEnd.WriteString(l[13])
+			lEnd.WriteString(strconv.FormatFloat(90-v2, 'f', -1, 64))
 		}
 		// V3
 		if l[14] != "" {
@@ -195,13 +205,23 @@ func ProcessAvevaCsv(csvFile string) map[string]*models.Part {
 		}
 		// V1
 		if l[26] != "" {
-			rEnd.WriteString(" v1=")
-			rEnd.WriteString(l[26])
+			v1, err := strconv.ParseFloat(l[26], 64)
+			if err != nil {
+				panic(err)
+			}
+
+			lEnd.WriteString(" v1=")
+			lEnd.WriteString(strconv.FormatFloat(v1-90, 'f', -1, 64))
 		}
 		// V2
 		if l[27] != "" {
-			rEnd.WriteString(" v2=")
-			rEnd.WriteString(l[27])
+			v2, err := strconv.ParseFloat(l[27], 64)
+			if err != nil {
+				panic(err)
+			}
+
+			lEnd.WriteString(" v2=")
+			lEnd.WriteString(strconv.FormatFloat(90-v2, 'f', -1, 64))
 		}
 		// V3
 		if l[28] != "" {

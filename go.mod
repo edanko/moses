@@ -11,7 +11,7 @@ require (
 	github.com/emirpasic/gods v1.12.0
 	github.com/gofiber/fiber/v2 v2.14.0
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/joho/godotenv v1.3.0
+	github.com/joho/godotenv v1.4.0
 	github.com/jszwec/csvutil v1.5.0
 	github.com/klauspost/compress v1.13.1 // indirect
 	github.com/spf13/cobra v1.2.1

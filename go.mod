@@ -13,12 +13,11 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/joho/godotenv v1.3.0
 	github.com/jszwec/csvutil v1.5.0
-	github.com/klauspost/compress v1.13.1 // indirect
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/viper v1.8.1
 	github.com/valyala/fasthttp v1.28.0 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20201027041543-1326539a0a0a // indirect
-	go.mongodb.org/mongo-driver v1.5.4
+	go.mongodb.org/mongo-driver v1.8.3
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
 )

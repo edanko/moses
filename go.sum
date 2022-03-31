@@ -105,6 +105,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/edanko/dxf v0.0.0-20201208095808-124b31333634 h1:zj4pCLtT4WieE4q1BZZPB9+jPSLLzagHhzgD49Edl4E=
 github.com/edanko/dxf v0.0.0-20201208095808-124b31333634/go.mod h1:VZdXVKOPzgphSClV6Y7qMB8QBE4juzkVEhXw7E0nJLg=
+github.com/edanko/dxf v0.0.0-20211227163716-aa337fc1c258 h1:b741eD1l/PvRdtUHR87HyGM3v9xA5Y0aQ3upQEgNk7s=
+github.com/edanko/dxf v0.0.0-20211227163716-aa337fc1c258/go.mod h1:VZdXVKOPzgphSClV6Y7qMB8QBE4juzkVEhXw7E0nJLg=
 github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e h1:LL/qYfakWecMBzJs6DpAhXF4R0a7sqh4luqUCoIivyQ=
 github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e/go.mod h1:SuVHFTPu8aYhsJqWp2xFtLZh5m8odAnf15WMCJZ2kXg=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=

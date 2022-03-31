@@ -3,7 +3,7 @@ module github.com/edanko/moses
 go 1.16
 
 require (
-	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.0
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.5.0
 	github.com/aws/aws-sdk-go v1.39.4 // indirect
 	github.com/edanko/dxf v0.0.0-20201208095808-124b31333634
 	github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e

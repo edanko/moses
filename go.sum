@@ -107,6 +107,8 @@ github.com/edanko/dxf v0.0.0-20201208095808-124b31333634 h1:zj4pCLtT4WieE4q1BZZP
 github.com/edanko/dxf v0.0.0-20201208095808-124b31333634/go.mod h1:VZdXVKOPzgphSClV6Y7qMB8QBE4juzkVEhXw7E0nJLg=
 github.com/edanko/dxf v0.0.0-20211227163716-aa337fc1c258 h1:b741eD1l/PvRdtUHR87HyGM3v9xA5Y0aQ3upQEgNk7s=
 github.com/edanko/dxf v0.0.0-20211227163716-aa337fc1c258/go.mod h1:VZdXVKOPzgphSClV6Y7qMB8QBE4juzkVEhXw7E0nJLg=
+github.com/edanko/dxf v1.0.0 h1:wpCVfcblkYXs3dsegRA4zW6K+PzhU8A4nVU1ZSfohmM=
+github.com/edanko/dxf v1.0.0/go.mod h1:u3ndIMgVTDJdoR6bpr1oVJfwWrEfNpP2Bsk//4Vodjo=
 github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e h1:LL/qYfakWecMBzJs6DpAhXF4R0a7sqh4luqUCoIivyQ=
 github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e/go.mod h1:SuVHFTPu8aYhsJqWp2xFtLZh5m8odAnf15WMCJZ2kXg=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=
@@ -483,6 +485,8 @@ github.com/xdg-go/stringprep v1.0.2 h1:6iq84/ryjjeRmMJwxutI51F2GIPlP5BfTvXHeYjyh
 github.com/xdg-go/stringprep v1.0.2/go.mod h1:8F9zXuvzgwmyT5DUm4GUfZGDdT3W+LCvS6+da4O5kxM=
 github.com/xuri/efp v0.0.0-20210322160811-ab561f5b45e3 h1:EpI0bqf/eX9SdZDwlMmahKM+CDBgNbsXMhsN28XrM8o=
 github.com/xuri/efp v0.0.0-20210322160811-ab561f5b45e3/go.mod h1:ybY/Jr0T0GTCnYjKqmdwxyxn2BQf2RcQIIvex5QldPI=
+github.com/yofu/dxf v0.0.0-20190710012328-5a6d1e83f16c h1:qgsxLgTXCVH8Dxar36HI5af2ZfinVz5vF8erPpyzM+A=
+github.com/yofu/dxf v0.0.0-20190710012328-5a6d1e83f16c/go.mod h1:gnT4GQzgKW8+TLI0xheUgdmNV4dsAN0WJUVnztRZkfI=
 github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d/go.mod h1:rHwXgn7JulP+udvsHwJoVG1YGAP6VLg4y9I5dyZdqmA=
 github.com/youmark/pkcs8 v0.0.0-20201027041543-1326539a0a0a h1:fZHgsYlfvtyqToslyjUt3VOPF4J7aK/3MPcK7xp3PDk=
 github.com/youmark/pkcs8 v0.0.0-20201027041543-1326539a0a0a/go.mod h1:ul22v+Nro/R083muKhosV54bj5niojjWZvU8xrevuH4=

@@ -10,7 +10,7 @@ require (
 	github.com/emirpasic/gods v1.12.0
 	github.com/gofiber/fiber/v2 v2.31.0
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/joho/godotenv v1.4.0
+	github.com/joho/godotenv v1.5.1
 	github.com/jszwec/csvutil v1.6.0
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1

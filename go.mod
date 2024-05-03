@@ -6,7 +6,7 @@ require (
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.0
 	github.com/aws/aws-sdk-go v1.39.4 // indirect
 	github.com/edanko/dxf v0.0.0-20211227163716-aa337fc1c258
-	github.com/edanko/gen2dxf v0.0.0-20210623125645-759a16b1522e
+	github.com/edanko/gen2dxf v0.0.0-20220629220351-86dedef7dd1e
 	github.com/emirpasic/gods v1.12.0
 	github.com/gofiber/fiber/v2 v2.31.0
 	github.com/golang/snappy v0.0.4 // indirect

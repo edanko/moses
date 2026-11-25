@@ -1,1 +1,11 @@
-_old
+# build artifacts
+/moses
+/build/
+
+# test binaries
+/*.test
+
+# runtime working directories
+/in/
+/out/
+

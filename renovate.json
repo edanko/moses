@@ -1,27 +1,17 @@
 {
-  "configMigration": true,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    "docker:pinDigests",
-    "helpers:pinGitHubActionDigests"
+    "config:recommended"
   ],
   "labels": [
     "dependencies"
   ],
-  "semanticCommits": "enabled",
-  "docker-compose": {
-    "enabled": false
-  },
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "*"
-      ],
       "matchUpdateTypes": [
         "minor",
         "patch",
         "digest",
-        "pinDigest",
         "pin"
       ],
       "groupName": "all non-major dependencies",
@@ -29,7 +19,6 @@
     }
   ],
   "postUpdateOptions": [
-    "gomodTidy",
-    "gomodUpdateImportPaths"
+    "gomodTidy"
   ]
 }

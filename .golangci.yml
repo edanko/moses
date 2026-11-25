@@ -1,0 +1,50 @@
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  default: standard
+  enable:
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - copyloopvar
+    - durationcheck
+    - errname
+    - errorlint
+    - forcetypeassert
+    - gocritic
+    - misspell
+    - nilerr
+    - noctx
+    - nolintlint
+    - predeclared
+    - reassign
+    - thelper
+    - unconvert
+    - usestdlibvars
+    - usetesting
+    - whitespace
+
+  settings:
+    errcheck:
+      check-type-assertions: true
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - performance
+      disabled-checks:
+        - hugeParam # large value objects are intentional in the domain model
+        - rangeValCopy # readability wins over copying small structs here
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+    usestdlibvars:
+      http-method: false
+      http-status-code: false
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

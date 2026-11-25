@@ -1,0 +1,2 @@
+# Production fixtures carry CRLF-sensitive machine output; keep them byte-exact.
+testdata/** -text

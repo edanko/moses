@@ -1,9 +1,1 @@
-cmd/conv/in/*
-cmd/conv/out/*
-cmd/parser/in/*
-cmd/parser/out/*
-cmd/parser/p
-cmd/importer/in/*
-*.exe
-*.prof
-*.csv
+_old

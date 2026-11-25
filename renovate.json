@@ -1,5 +1,35 @@
 {
+  "configMigration": true,
   "extends": [
-    "config:base"
+    "config:base",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "semanticCommits": "enabled",
+  "docker-compose": {
+    "enabled": false
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest",
+        "pinDigest",
+        "pin"
+      ],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch-digest-pin"
+    }
+  ],
+  "postUpdateOptions": [
+    "gomodTidy",
+    "gomodUpdateImportPaths"
   ]
 }

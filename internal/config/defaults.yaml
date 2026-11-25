@@ -1,0 +1,154 @@
+version: 2
+
+defaults:
+  stockLength: 12000
+  endcutSpacing: 5
+
+remnants:
+  enabled: true
+  minLength: 1100
+  file: remnants.csv
+
+families:
+  hp:
+    prefixes: [rp, pp]
+    stockLength: 12000
+    endcutSpacing: 5
+  fb:
+    prefixes: [fb]
+    stockLength: 6000
+    endcutSpacing: 5
+  ae:
+    prefixes: [ae]
+    stockLength: 11200
+    endcutSpacing: 5
+
+profiles:
+  rp100x6:
+    family: hp
+    shape: HP
+    massPerMeter: 6.76
+    b: 100
+    c: 20
+    s: 6
+    r: 5
+  rp120x6.5:
+    family: hp
+    shape: HP
+    massPerMeter: 8.75
+    b: 120
+    c: 23.5
+    s: 6.5
+    r: 5
+  rp140x7:
+    family: hp
+    shape: HP
+    massPerMeter: 11.05
+    b: 140
+    c: 26
+    s: 7
+    r: 6
+  rp140x9:
+    family: hp
+    shape: HP
+    massPerMeter: 13.23
+    b: 140
+    c: 26
+    s: 9
+    r: 6
+  rp160x8:
+    family: hp
+    shape: HP
+    massPerMeter: 14.08
+    b: 160
+    c: 28
+    s: 8
+    r: 7
+  rp160x10:
+    family: hp
+    shape: HP
+    massPerMeter: 16.60
+    b: 160
+    c: 28
+    s: 10
+    r: 7
+  rp180x9:
+    family: hp
+    shape: HP
+    massPerMeter: 17.41
+    b: 180
+    c: 31
+    s: 9
+    r: 7
+  rp180x11:
+    family: hp
+    shape: HP
+    massPerMeter: 20.24
+    b: 180
+    c: 31
+    s: 11
+    r: 7
+  rp200x10:
+    family: hp
+    shape: HP
+    massPerMeter: 21.47
+    b: 200
+    c: 34
+    s: 10
+    r: 8
+  rp200x11:
+    family: hp
+    shape: HP
+    b: 200
+    c: 34
+    s: 11
+    r: 8
+  rp200x12:
+    family: hp
+    shape: HP
+    massPerMeter: 24.60
+    b: 200
+    c: 34
+    s: 12
+    r: 8
+  rp220x11:
+    family: hp
+    shape: HP
+    massPerMeter: 25.75
+    b: 220
+    c: 37
+    s: 11
+    r: 8.5
+  rp220x13:
+    family: hp
+    shape: HP
+    massPerMeter: 29.20
+    b: 220
+    c: 37
+    s: 13
+    r: 8.5
+  rp240x12:
+    family: hp
+    shape: HP
+    massPerMeter: 30.42
+    b: 240
+    c: 40
+    s: 12
+    r: 9
+  rp240x14:
+    family: hp
+    shape: HP
+    massPerMeter: 34.18
+    b: 240
+    c: 40
+    s: 14
+    r: 9
+  ae250x90x10x15:
+    family: ae
+    shape: L
+    a: 250
+    b: 90
+    r1: 19
+    r2: 9.5
+    s: 10
+    t: 15

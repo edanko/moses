@@ -1,20 +1,149 @@
 # moses
 
-Shipbuilding production profile part nesting tool. You can take as input following formats:
+[![Test](https://github.com/edanko/moses/actions/workflows/test.yml/badge.svg)](https://github.com/edanko/moses/actions/workflows/test.yml)
+[![Lint](https://github.com/edanko/moses/actions/workflows/lint.yml/badge.svg)](https://github.com/edanko/moses/actions/workflows/lint.yml)
+[![Security](https://github.com/edanko/moses/actions/workflows/security.yml/badge.svg)](https://github.com/edanko/moses/actions/workflows/security.yml)
 
-- Simple txt format
-- AVEVA Generic file (*.gen) from profile interface
-- AVEVA csv&lst files from "Profile sketch & list"
-- Production drawings from Cadmatic (in dxf format)
+Shipbuilding production profile nesting tool. It reads the formats the yard
+actually produces, nests profiles onto stock bars, and writes machine output.
 
-and output nested bars in mgf file format (used in AutoCAM MOSES software)
+Supported inputs:
 
-# TODO
-- [ ] read weight form *.gen and store in part model?
-- [ ] rewrite this to restful backend (gofiber) and vue.js frontend
-- [ ] store remnants in mongodb
-- [ ] store profile in mongodb
-- [ ] add second profile cutting line output
-- [ ] add separate program to import parts to db
-- [ ] validate everything
-- [ ] some checker program (files vs db) or integrate this to importer
+- pre-nested production TXT (`parser`)
+- Cadmatic profile-report DXF (`conv 10022`)
+- AVEVA "Profile sketch & list" CSV + LST (`conv 10510`)
+- AVEVA marine GEN (`conv 10510gen`)
+
+Outputs are MGF for the IMG cutting machine, nested TXT, bar/nesting reports,
+an Excel workbook, and the remnant CSV.
+
+## Install and build
+
+```bash
+go build -o moses ./cmd/moses
+# or
+make build
+```
+
+Version, commit and build time are injected with `-ldflags`.
+
+## Commands
+
+```text
+moses parser [--in DIR] [--out DIR] [--dont-rename]
+moses conv 10022   --in DIR --out DIR
+moses conv 10510   --in DIR --out DIR --project PROJECT
+moses conv 10510gen --in DIR --out DIR --project PROJECT
+moses version
+```
+
+Global flag: `--config FILE` (default `config.yaml`). Converter flags:
+`--remnants FILE` (default: `remnants.file` from config) and `--algorithm NAME`
+(`best-fit-decreasing` by default; `knapsack` is also available).
+
+`moses parser` writes `out/<project>/<section>/<nest>.mgf` and
+`<nest>_strightcut.txt`, and prefixes consumed input files with `_` unless
+`--dont-rename` is set.
+
+Converters write, under `--out`:
+
+```text
+txt/<project>-<section>_<DIM>_<QUALITY>.txt
+<project>-<section>_bar.txt
+<project>-<section>_nst.txt
+<project>-<section>.xlsx
+```
+
+`conv 10022` does not write Excel. Remnants are read from and written to
+`remnants.csv` in the working directory unless overridden.
+
+## Configuration
+
+Moses uses a versioned YAML configuration. `version: 2` is required; unknown
+fields are rejected. Values are merged over embedded geometry defaults, so a
+site config only needs its spacing/stock overrides.
+
+```yaml
+version: 2
+
+defaults:
+  stockLength: 12000
+  endcutSpacing: 5
+
+remnants:
+  enabled: true
+  minLength: 1100
+  file: remnants.csv
+
+families:
+  hp:
+    prefixes: [rp, pp]
+    stockLength: 12000
+    endcutSpacing: 5
+    endcuts:
+      "21":
+        profiles:
+          rp160x8: 8
+  fb:
+    prefixes: [fb]
+  ae:
+    prefixes: [ae]
+    stockLength: 11200
+```
+
+Resolution is explicit and fails loudly:
+
+- spacing: profile → endcut default → family default → `defaults.endcutSpacing`
+- stock length: profile → family → `defaults.stockLength`
+- geometry: `profiles.<type>`; FB is derived from the type
+
+A complete example is in `config.example.yaml`.
+
+## Performance
+
+Benchmarks and profiling notes are in [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
+
+## Development
+
+```bash
+make test         # go test ./...
+make test-race    # go test -race -shuffle=on -count=1 ./...
+make bench        # pipeline benchmarks
+make lint         # go vet + golangci-lint
+make lint-fix     # golangci-lint --fix
+make lint-config  # validate .golangci.yml
+make format       # gofmt -w
+make format-check # fail if sources are not formatted
+make mod-check    # fail if go.mod/go.sum are not tidy
+make verify       # format, mod, lint and race tests
+make help         # list targets
+```
+
+CI runs the same gates from `.github/workflows/`: tests and build in
+`test.yml`, golangci-lint in `lint.yml`, and govulncheck in `security.yml`.
+
+`testdata/` contains real TXT/GEN samples and oracle MGF output. Checked-in
+configuration fixtures for the pipeline tests live under
+`internal/config/testdata/v2`.
+
+## Domain model
+
+The core uses shipbuilding terms: profile designation, steel grade, part,
+position number, end cut, cutout, stock bar, remnant and nest. See
+[GLOSSARY.md](GLOSSARY.md) for definitions and the old-to-new vocabulary map.
+
+## Implementation notes
+
+The CLI uses only the standard library `flag` package. IDs are RFC 9562
+UUIDs generated by the standard library `uuid` package in Go 1.27; there is no
+external UUID or CLI dependency. Sentinel errors come from the standard
+`errors` package.
+
+## Legacy notes
+
+The Mongo/Fiber workflow and the old standalone `conv`/`parser` binaries are
+intentionally not part of this port. JINFENG and ARR output are not implemented
+yet; their old sources are retained in the gitignored `_old` reference for
+future machine-output work and are not build dependencies. The MGF writer keeps
+the legacy field order, float formatting and `<nest>_strightcut.txt` filename
+for machine compatibility.

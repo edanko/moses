@@ -1,9 +1,11 @@
-cmd/conv/in/*
-cmd/conv/out/*
-cmd/parser/in/*
-cmd/parser/out/*
-cmd/parser/p
-cmd/importer/in/*
-*.exe
-*.prof
-*.csv
+# build artifacts
+/moses
+/build/
+
+# test binaries
+/*.test
+
+# runtime working directories
+/in/
+/out/
+
